@@ -7,17 +7,28 @@
 # Follow-up: what if you can't use division?
 
 def multiple(arr : list) -> list:
+    print(arr)
     n = len(arr)
     arr_left = []
-    arr_right = []
-    tmp_left = 1
-    tmp_right = 1
+    tmp = 1
     for i in range(n):
-        if i==0:
-            arr_left.append(tmp_left)
-        if i==n-1:
-            arr_right.append(tmp_right)
-        tmp_left = 1
         arr_left.append(tmp)
+        tmp *= arr[i]
+    # print(arr_left)
+
+    arr_right = []
+    tmp = 1
+    for i in range(n):
+        arr_right.insert(0, tmp)
+        tmp *= arr[n-i-1]
+    # print(arr_right)
+
+    # products = []
+    # for num1, num2 in zip(arr_left, arr_right):
+    #     products.append(num1 * num2)
+    # return products
+
+    # better way
+    return [a * b for a, b in zip(arr_left, arr_right)]
 
 print (multiple([1, 2, 3, 4, 5]))
