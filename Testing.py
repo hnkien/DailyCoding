@@ -112,6 +112,49 @@
 # print("Original list ", irregular_list)
 # print("Transformed List ", flatten_list(irregular_list))
 
-import random
-for i in range(100):
-    print(random.randint(5,10), end=' ')
+
+# import random
+# for i in range(100):
+#     print(random.randint(5,10), end=' ')
+
+
+def function(a):
+    return a*a
+
+x = map(function, (1,2,3,4))  #x is the map object
+print(x)
+print(type(x))
+
+z= list(x)
+print(type(z))
+print(z)
+
+# Note: x only dispatch once time, y variable below is None
+y = set(x)
+print(type(y))
+print(y)
+
+
+tup= (5, 7, 22, 97, 54, 62, 77, 23, 73, 61)
+newtuple = tuple(map(lambda x: x+3 , tup))
+print(newtuple)
+
+
+def func(x):
+    if x>=3:
+        return x
+y = filter(func, (1,2,3,4))
+print(y)
+print(list(y))
+
+
+from functools import reduce
+reduce(lambda a,b: a+b,[23,21,45,98])
+
+
+double = lambda x: x * 2
+print(double(10))
+
+sequences = [10,2,8,7,5,4,3,11,0, 1]
+filtered_answer = filter (lambda x: x > 6, sequences)
+print(list(filtered_answer))
