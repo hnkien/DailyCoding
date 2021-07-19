@@ -1,2 +1,12 @@
 # Default ignored files
+<<<<<<< HEAD
+/shelf/
 /workspace.xml
+# Datasource local storage ignored files
+/../../../../:\Working\DailyCoding\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+=======
+/workspace.xml
+>>>>>>> 30d0db1d8e373b1e0740f40f90ce3260c9c99e8d
