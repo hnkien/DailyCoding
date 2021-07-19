@@ -41,6 +41,38 @@ class Stack:
             return None
 
 
+    def reverse(self):
+        aLL = LinkedList(None)
+        while not self.is_empty():
+            aNode = Node(self.pop())
+            aLL.insertNode(aNode)
+        llNode = aLL.head
+        while llNode is not None:
+            self.push(llNode.data)
+            llNode = llNode.next
+
+
+
+class Node():
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList():
+    def __init__(self, head):
+        self.head = head
+
+    def traverseList(self):
+        llNode = self.head
+        while llNode is not None:
+            print(llNode.data, end=" ")
+            llNode = llNode.next
+
+    def insertNode(self, node):
+        node.next = self.head
+        self.head = node
+
+
 if __name__ == "__main__":
     aStack = Stack(5)
 
@@ -48,16 +80,20 @@ if __name__ == "__main__":
     aStack.push(2)
     aStack.push(3)
 
-    while not aStack.is_empty():
-        print(aStack.pop())
+    # while not aStack.is_empty():
+    #     print(aStack.pop())
 
     aStack.push(4)
     aStack.push(5)
 
-    while not aStack.is_empty():
-        print(aStack.pop())
+    # while not aStack.is_empty():
+    #     print(aStack.pop())
 
     aStack.push(6)
     aStack.push(7)
 
-    print(aStack.peek())
+    # print(aStack.peek())
+
+    aStack.reverse()
+    while not aStack.is_empty():
+        print(aStack.pop())
