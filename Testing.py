@@ -117,44 +117,211 @@
 # for i in range(100):
 #     print(random.randint(5,10), end=' ')
 
+#
+# def function(a):
+#     return a*a
+#
+# x = map(function, (1,2,3,4))  #x is the map object
+# print(x)
+# print(type(x))
+#
+# z= list(x)
+# print(type(z))
+# print(z)
+#
+# # Note: x only dispatch once time, y variable below is None
+# y = set(x)
+# print(type(y))
+# print(y)
+#
+#
+# tup= (5, 7, 22, 97, 54, 62, 77, 23, 73, 61)
+# newtuple = tuple(map(lambda x: x+3 , tup))
+# print(newtuple)
+#
+#
+# def func(x):
+#     if x>=3:
+#         return x
+# y = filter(func, (1,2,3,4))
+# print(y)
+# print(list(y))
+#
+#
+# from functools import reduce
+# reduce(lambda a,b: a+b,[23,21,45,98])
+#
+#
+# double = lambda x: x * 2
+# print(double(10))
+#
+# sequences = [10,2,8,7,5,4,3,11,0, 1]
+# filtered_answer = filter (lambda x: x > 6, sequences)
+# print(list(filtered_answer))
+#
 
-def function(a):
-    return a*a
 
-x = map(function, (1,2,3,4))  #x is the map object
-print(x)
-print(type(x))
-
-z= list(x)
-print(type(z))
-print(z)
-
-# Note: x only dispatch once time, y variable below is None
-y = set(x)
-print(type(y))
-print(y)
-
-
-tup= (5, 7, 22, 97, 54, 62, 77, 23, 73, 61)
-newtuple = tuple(map(lambda x: x+3 , tup))
-print(newtuple)
-
-
-def func(x):
-    if x>=3:
-        return x
-y = filter(func, (1,2,3,4))
-print(y)
-print(list(y))
-
-
-from functools import reduce
-reduce(lambda a,b: a+b,[23,21,45,98])
+# from queue import LifoQueue
+# s = LifoQueue()
+# s.put("1")
+# s.put("2")
+# s.put("3")
+# s.put("4")
+# print(s.get())
+# print(s.get())
+# print(s.get())
+# print(s.get())
+# print(s.get())
+#
+#
+# from collections import deque
+# q = deque()
+#
+# q.append('eat')
+# q.append('sleep')
+# q.append('code')
+#
+# print(q)
+# # while len(q)>0:
+# #     print(q.pop())
+#
+# while len(q)>0:
+#     print(q.popleft())
 
 
-double = lambda x: x * 2
-print(double(10))
+# nested_list = [['cherry', 7], ['apple', 1000], ['anaconda', 160]]
+#
+# a = max(nested_list, key=lambda x: x[1])
+# print(a)
+#
+# b = min(nested_list, key=lambda x: x[1])
+# print(b)
+#
+# print(nested_list)
+# c = sorted(nested_list, key=lambda x: x[1])
+# print(c)
 
-sequences = [10,2,8,7,5,4,3,11,0, 1]
-filtered_answer = filter (lambda x: x > 6, sequences)
-print(list(filtered_answer))
+
+# a = [1,2,3,4,5,6,7,8,9,10]
+# b = sum([i for i in a if i % 2 ==0 and i> 4])
+# print(b)
+#
+# num_list = [y for y in range(100) if y % 2 == 0 if y % 5 == 0]
+# print(num_list)
+#
+# obj = ["Even" if i%2==0 else "Odd" for i in range(10)]
+# print(obj)
+
+#
+# # Transpose of Matrix using Nested Loops
+# transposed = []
+# matrix = [[1, 2, 3, 4], [4, 5, 6, 8]]
+#
+# for i in range(len(matrix[0])):
+#     transposed_row = []
+#
+#     for row in matrix:
+#         transposed_row.append(row[i])
+#     transposed.append(transposed_row)
+#
+# print(transposed)
+
+
+# Transpose of a Matrix using List Comprehension
+matrix = [[1, 2], [3,4], [5,6], [7,8]]
+transpose = [[row[i] for row in matrix] for i in range(2)]
+print (transpose)
+
+
+
+# import queue
+# a = queue.Queue()
+# a.put(1)
+# a.put(2)
+# a.put(3)
+# while not a.empty():
+#     print(a.get())
+
+# import queue
+# a = queue.LifoQueue()
+# a.put(1)
+# a.put(2)
+# a.put(3)
+# while not a.empty():
+#     print(a.get())
+
+
+# import sys
+# print(sys.maxsize)
+
+
+# from itertools import chain
+#
+# l1 = [1, 2, 3]
+# l2 = [4, 5, 6]
+# l3 = [7, 8, 9]
+# l = chain (l1,l2,l3)
+# print(type(l))
+# print (l)
+#
+# for i in chain(l1, l2, l3):
+#     print(i) # 1,2,3,4,5,6,7,8,9
+#
+# print(list(chain(l1, l2, l3))) # [1, 2, 3, 4, 5, 6, 7, 8, 9]
+# print(sum(chain(l1, l2, l3))) # 45
+
+
+# lst = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+# for i in zip(*lst):
+#     print(i)
+# # (1, 4, 7)
+# # (2, 5, 8)
+# # (3, 6, 9)
+
+
+# from operator import add
+#
+# print([i for i in map(pow, (2,3,10), (5,2,3))])
+# # [32, 9, 1000]
+#
+# print([i for i in map(add, map(pow, (2,3,10), (5,2,3)), (2,2,2))])
+# # [34, 11, 1002]
+
+
+# from itertools import islice
+# a = range(10)
+# i = iter(a)
+# print(list(islice(i, 1, 3))
+# print(list(islice(i, 1, 3))
+# print(list(islice(i, 1, 3))
+# print(list(islice(i, 1, 3))
+# #[1, 2]
+# #[4, 5]
+# #[7, 8]
+# #[]
+
+
+# names = ['Bob', 'JOHN', 'alice', 'bob', 'ALICE', 'J', 'Bob']
+# s = { name[0].upper() + name[1:].lower() for name in names if len(name) > 1 }
+# print(s)
+
+# dct = {'a': 10, 'b': 34, 'A': 7, 'Z': 3}
+# freq_dict = {k.lower() : dct.get(k.lower(), 0) + dct.get(k.upper(), 0) for k in dct.keys()}
+# print(freq_dict)
+# # {'a': 17, 'z': 3, 'b': 34}
+
+
+# numbers = [0, 1, 2, 3, 4]
+# squared_numbers_map = list(map(lambda x: x**2, numbers))
+# # for num in enumerate(squared_numbers_map):
+# #     print(num)
+#
+# for num in enumerate(numbers):
+#     print(num)
+#     print(type(num))
+
+
+# animals = ["cat", "dog", "hedgehog", "gecko"]
+# iterator = map(lambda s: s[::-1], animals)
+# a = list(iterator)
+# print(a)
