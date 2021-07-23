@@ -1,3 +1,83 @@
+a = [1, 2, 3, 4, 5]
+b = a.pop()
+print(b)
+a.append(6)
+print(a)
+a.reverse()
+print(a)
+a.sort()
+print(a)
+
+# a = "Hello World"
+# b = a[1:5]
+# print(b)
+
+# import random
+# print(random.randint(0,9))
+
+
+# import heapq
+# h = []
+# print(h is None)
+# heapq.heappush(h, 5)
+# heapq.heappush(h, 7)
+# heapq.heappush(h, 1)
+# heapq.heappush(h, 3)
+# print(heapq.heappop(h))
+# print(h[0])
+# print(heapq.heappop(h))
+
+# import heapq
+# class RoomTime:
+#     def __init__(self, st, et):
+#         self.start = st
+#         self.end = et
+# 
+#     def __str__(self):
+#         return "{} -> {}".format(self.start, self.end)
+# 
+#     def __lt__(self, other):
+#         return self.start <= other.start
+# 
+# rt1 = RoomTime(0, 30)
+# rt2 = RoomTime(5, 10)
+# rt3 = RoomTime(15, 20)
+# rt = [rt1, rt2, rt3]
+# heapq.heapify(rt)
+# print(rt1)
+# for x in rt:
+#     print(x)
+
+
+# import heapq as hq
+# # the dictionary to be as heap
+# my_dict = {'z': 'zebra', 'b': 'ball', 'w': 'whale',
+# 		'a': 'apple', 'm': 'monkey', 'c': 'cat'}
+# # conversion to tuple
+# my_list = [(k, v) for k, v in my_dict.items()]
+# print("Before organizing as heap :", my_list)
+# # arrange as min-heap
+# hq.heapify(my_list)
+# print("After organizing as heap :", my_list)
+# # re convert to dictionary
+# my_dict = dict(my_list)
+# print("Resultant dictionary :", my_dict)
+
+
+
+
+# f = open("Testing2.py", "r", encoding="utf-8")
+# for line in f:
+#     print(line)
+#
+
+
+# a = {"1": "a", "2": "b", "3": "c"}
+# print("1" in a)
+# print("4" in a)
+# print("a" in a)
+
+
 # a= "alice,20,800,mtv"
 # b=a.split(",")
 # print(b)
@@ -49,8 +129,9 @@
 # a = [1,2,3,4]
 # print(*a)
 
-# a= "HelloWorld"
-# print("#".join(a))
+# a = "HelloWorld"
+# b = "#" + "#".join(a) + "#"
+# print(b)
 
 
 # import heapq
@@ -228,9 +309,9 @@
 
 
 # Transpose of a Matrix using List Comprehension
-matrix = [[1, 2], [3,4], [5,6], [7,8]]
-transpose = [[row[i] for row in matrix] for i in range(2)]
-print (transpose)
+# matrix = [[1, 2], [3,4], [5,6], [7,8]]
+# transpose = [[row[i] for row in matrix] for i in range(2)]
+# print (transpose)
 
 
 

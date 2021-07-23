@@ -8,7 +8,6 @@ def lengthOfLongestSubstring(s: str) -> int:
         # print("Len: ", l)
         i = 0
         max_at = [1] * l
-
         max_substr_len = 1
 
         while i < l-max_substr_len+1:
