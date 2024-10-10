@@ -1,12 +1,39 @@
-a = [1, 2, 3, 4, 5]
-b = a.pop()
-print(b)
-a.append(6)
-print(a)
-a.reverse()
-print(a)
-a.sort()
-print(a)
+import sys
+
+# Hàm kiểm tra hệ thống có phải là Little Endian hay không
+def is_little_endian():
+    return sys.byteorder == 'little'
+
+# Hàm chuyển đổi Little Endian sang Big Endian và ngược lại
+def swap_endian(num):
+    return ((num >> 24) & 0x000000FF) | \
+           ((num >> 8)  & 0x0000FF00) | \
+           ((num << 8)  & 0x00FF0000) | \
+           ((num << 24) & 0xFF000000)
+
+# Kiểm tra hệ thống
+if is_little_endian():
+    print("System is Little Endian")
+else:
+    print("System is Big Endian")
+
+# Thử chuyển đổi Endian
+x = 0x12345678
+print(f"Original: 0x{x:08X}")
+swapped = swap_endian(x)
+print(f"Swapped: 0x{swapped:08X}")
+
+
+
+# a = [1, 2, 3, 4, 5]
+# b = a.pop()
+# print(b)
+# a.append(6)
+# print(a)
+# a.reverse()
+# print(a)
+# a.sort()
+# print(a)
 
 # a = "Hello World"
 # b = a[1:5]
