@@ -406,3 +406,144 @@ print(a)
 # iterator = map(lambda s: s[::-1], animals)
 # a = list(iterator)
 # print(a)
+
+
+# def median_of_medians(nums, start, end, k):
+#     """
+#     Tìm phần tử thứ K nhỏ nhất trong đoạn con từ nums[start] đến nums[end]
+#     """
+#     if end - start <= 5:
+#         nums[start:end + 1] = sorted(nums[start:end + 1])
+#         return nums[start + k - 1]
+#
+#     # Chia thành các nhóm 5 phần tử
+#     medians = []
+#     for i in range(start, end + 1, 5):
+#         group = nums[i:min(i + 5, end + 1)]
+#         group.sort()
+#         medians.append(group[len(group) // 2])
+#
+#     # Tìm trung vị của các trung vị
+#     pivot = median_of_medians(medians, 0, len(medians) - 1, len(medians) // 2 + 1)
+#
+#     # Phân hoạch (in-place)
+#     low = []
+#     high = []
+#     pivot_list = []
+#
+#     for i in range(start, end + 1):
+#         if nums[i] < pivot:
+#             low.append(nums[i])
+#         elif nums[i] > pivot:
+#             high.append(nums[i])
+#         else:
+#             pivot_list.append(nums[i])
+#
+#     # Xử lý đệ quy theo các trường hợp
+#     if k <= len(low):
+#         return median_of_medians(low, 0, len(low) - 1, k)
+#     elif k <= len(low) + len(pivot_list):
+#         return pivot
+#     else:
+#         return median_of_medians(high, 0, len(high) - 1, k - len(low) - len(pivot_list))
+#
+#
+# def find_kth_smallest(nums, k):
+#     """
+#     Tìm phần tử thứ K nhỏ nhất trong danh sách
+#     """
+#     return median_of_medians(nums, 0, len(nums) - 1, k)
+#
+#
+# # Ví dụ
+# nums = [3, 7, 8, 5, 2, 1, 9, 6, 4]
+# k = 3
+# result = find_kth_smallest(nums, k)
+# print("Phần tử thứ", k, "nhỏ nhất là:", result)
+
+
+
+# import csv_to_sqlite
+#
+# # all the usual options are supported
+# options = csv_to_sqlite.CsvOptions(typing_style="full", encoding="windows-1250")
+# input_files = ["/Users/hypercloud/Downloads/Testing/TuDien/dictionary.csv"] # pass in a list of CSV files
+# csv_to_sqlite.write_csv(input_files, "/Users/hypercloud/Downloads/Testing/TuDien/english_dict.sqlite", options)
+
+
+
+# import sqlite3
+# import json
+#
+# conn = sqlite3.connect('english_ordia.db')
+# conn.execute("CREATE TABLE dictionary (english text, ordia text);")
+# with open('/Users/hypercloud/Downloads/Testing/TuDien/En-Or_word_pairs.json', 'r') as json_file:
+#     data = json.load(json_file)
+#     i = 0
+#     print(type(data))
+#     for key in data:
+#         if key and data[key]:
+#             i += 1
+#             # print(key)
+#             # print(data[key])
+#             # if i > 10:
+#             #     break
+#
+#             conn.execute("INSERT INTO dictionary (english, ordia) VALUES (?, ?)", (key, data[key]))
+#     print(i)
+# conn.commit()
+# conn.close()
+
+
+
+# import sqlite3
+#
+# conn = sqlite3.connect('english_spanish.db')
+# conn.execute("CREATE TABLE dictionary (english text, spanish text);")
+# with open('/Users/hypercloud/Downloads/Testing/TuDien/EnglishSpanish.txt', 'r') as text_file:
+#     lines = text_file.readlines()
+#     count = 0
+#     # Strips the newline character
+#     for line in lines:
+#         count += 1
+#         # print("Line{}: {}".format(count, line.strip()))
+#         parts = line.split("\t")
+#         print(parts)
+#         conn.execute("INSERT INTO dictionary (english, spanish) VALUES (?, ?)", (parts[0], parts[1]))
+#         # if count > 20:
+#         #     break
+#
+# print(count)
+# conn.commit()
+# conn.close()
+
+#
+# import sqlite3
+# conn = sqlite3.connect('persian_english.db')
+# conn.execute("CREATE TABLE dictionary (persian text, english text);")
+#
+# with open('/Users/hypercloud/Downloads/Testing/TuDien/EnglishPersian.txt', 'r') as text_file:
+#     lines = text_file.readlines()
+#     count = 0
+#     # Strips the newline character
+#     for line in lines:
+#         # print("Line{}: {}".format(count, line.strip()))
+#         parts = line.split("|")
+#         if len(parts) <2:
+#             continue
+#
+#         # print(parts)
+#         count += 1
+#         english = parts[1].strip()
+#         persian = parts[2].strip()
+#         print(english, ':', persian)
+#         conn.execute("INSERT INTO dictionary (persian, english) VALUES (?, ?)", (persian, english))
+#         # if count > 50:
+#         #     break
+#
+# print(count)
+# conn.commit()
+# conn.close()
+
+
+
