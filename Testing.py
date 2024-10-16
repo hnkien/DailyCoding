@@ -1,27 +1,242 @@
-import sys
+from collections import deque
 
-# Hàm kiểm tra hệ thống có phải là Little Endian hay không
-def is_little_endian():
-    return sys.byteorder == 'little'
 
-# Hàm chuyển đổi Little Endian sang Big Endian và ngược lại
-def swap_endian(num):
-    return ((num >> 24) & 0x000000FF) | \
-           ((num >> 8)  & 0x0000FF00) | \
-           ((num << 8)  & 0x00FF0000) | \
-           ((num << 24) & 0xFF000000)
+def min_steps_bfs(N):
+    # BFS initialization
+    queue = deque([(N, 0)])  # (current_number, steps_count)
+    parent = {N: None}  # To track the parent number for each number
+    visited = set([N])  # To avoid revisiting numbers
 
-# Kiểm tra hệ thống
-if is_little_endian():
-    print("System is Little Endian")
-else:
-    print("System is Big Endian")
+    # BFS loop
+    while queue:
+        current, steps = queue.popleft()
 
-# Thử chuyển đổi Endian
-x = 0x12345678
-print(f"Original: 0x{x:08X}")
-swapped = swap_endian(x)
-print(f"Swapped: 0x{swapped:08X}")
+        # If we've reached 1, reconstruct the path and return the result
+        if current == 1:
+            path = []
+            while current is not None:
+                path.append(current)
+                current = parent[current]
+            path.reverse()  # Reverse to get the path from N to 1
+            return steps, path
+
+        # Option 1: Decrement the current number
+        if current - 1 not in visited:
+            visited.add(current - 1)
+            queue.append((current - 1, steps + 1))
+            parent[current - 1] = current  # Keep track of how we reached this state
+
+        # Option 2: Replace current with the largest divisor (larger between a and b where a * b = current)
+        for i in range(2, int(current ** 0.5) + 1):
+            if current % i == 0:
+                # Replace with divisor i
+                # if i not in visited:
+                #     visited.add(i)
+                #     queue.append((i, steps + 1))
+                #     parent[i] = current
+
+                # Replace with current // i (other divisor)
+                other_divisor = current // i
+                if other_divisor not in visited:
+                    visited.add(other_divisor)
+                    queue.append((other_divisor, steps + 1))
+                    parent[other_divisor] = current
+
+
+# Example usage
+N = 101
+steps_needed, path = min_steps_bfs(N)
+print(f"Minimum steps to reduce {N} to 1: {steps_needed}")
+print(f"Path: {path}")
+
+
+# def min_steps_to_one_dp(N):
+#     # Initialize dp and parent arrays
+#     dp = [float('inf')] * (N + 1)
+#     parent = [0] * (N + 1)  # This will store the number from which 'i' was reached
+#
+#     dp[1] = 0  # Base case: It takes 0 steps to reduce 1 to 1
+#
+#     for i in range(2, N + 1):
+#         # Option 1: Decrementing by 1
+#         if dp[i] > dp[i - 1] + 1:
+#             dp[i] = dp[i - 1] + 1
+#             parent[i] = i - 1  # We came to 'i' from 'i - 1'
+#
+#         # Option 2: Replacing with larger factor
+#         for j in range(2, int(i ** 0.5) + 1):
+#             if i % j == 0:
+#                 # if dp[i] > dp[j] + 1:  # From factor j
+#                 #     dp[i] = dp[j] + 1
+#                 #     parent[i] = j
+#
+#                 if dp[i] > dp[i // j] + 1:  # From factor i // j
+#                     dp[i] = dp[i // j] + 1
+#                     parent[i] = i // j
+#
+#     # Reconstruct the path of steps
+#     steps = []
+#     current = N
+#     while current > 0:
+#         steps.append(current)
+#         current = parent[current]
+#
+#     steps.reverse()  # Reverse to get the path from N to 1
+#     return dp[N], steps
+#
+#
+# # Example usage
+# N = 100
+# steps_needed, path = min_steps_to_one_dp(N)
+# print("Minimum steps to reduce", N, "to 1:", steps_needed)
+# print("Path:", path)
+
+
+
+# from collections import deque
+#
+# def min_steps_to_one(N):
+#     # BFS initialization
+#     queue = deque([(N, 0)])  # (current number, steps taken)
+#     visited = set([N])  # To keep track of visited numbers
+#
+#     while queue:
+#         current, steps = queue.popleft()
+#
+#         # If we've reached 1, return the steps count
+#         if current == 1:
+#             return steps
+#
+#         # Option 1: Decrement by 1
+#         if current - 1 not in visited:
+#             visited.add(current - 1)
+#             queue.append((current - 1, steps + 1))
+#
+#         # Option 2: Check for factorization
+#         for i in range(2, int(current ** 0.5) + 1):
+#             if current % i == 0:  # i * (current // i) = current
+#                 larger_factor = current // i
+#                 if larger_factor not in visited:
+#                     visited.add(larger_factor)
+#                     queue.append((larger_factor, steps + 1))
+#
+# # Example usage:
+# N = 100
+# print(min_steps_to_one(N))  # Output: 4 (10 -> 5 -> 4 -> 2 -> 1)
+
+
+
+# def min_steps_to_one_dp(N):
+#     # Initialize dp array, where dp[i] is the minimum steps to reduce i to 1
+#     dp = [float('inf')] * (N + 1)
+#     dp[1] = 0  # Base case: It takes 0 steps to reduce 1 to 1
+#
+#     for i in range(2, N + 1):
+#         # Option 1: Decrementing by 1
+#         dp[i] = dp[i - 1] + 1
+#
+#         # Option 2: Replacing with larger factor
+#         for j in range(1, int(i ** 0.5) + 1):
+#             if i % j == 0:
+#                 # dp[i] = min(dp[i], dp[j] + 1)  # Factor j
+#                 dp[i] = min(dp[i], dp[i // j] + 1)  # Factor i // j
+#
+#     return dp[N]
+#
+# # Example usage
+# N = 100
+# print(min_steps_to_one_dp(N))  # Output: 4
+
+
+# from collections import deque
+# def interleave_stack(stack):
+#     if len(stack) <= 1:
+#         return stack
+#
+#     # Initialize a queue
+#     queue = deque()
+#     n = len(stack)
+#     half = n // 2
+#
+#     # Step 1: Move all elements from the stack to the queue
+#     while stack:
+#         queue.append(stack.pop())
+#
+#     # Step 2: Push the first half back to the stack
+#     for _ in range(half):
+#         stack.append(queue.pop())
+#
+#     # Step 3: Interleave elements from the stack and queue
+#     for _ in range(half):
+#         queue.append(stack.pop())  # Put the first half back in reverse order
+#
+#     # Now, interleave from the queue
+#     while queue:
+#         stack.append(queue.popleft())  # First half
+#         if queue:
+#             stack.append(queue.popleft())  # Second half
+#
+#     return stack
+#
+#
+# # Example usage
+# stack = [1, 2, 3, 4, 5]
+# print("Original Stack:", stack)
+# interleave_stack(stack)
+# print("Interleaved Stack:", stack)
+
+
+# import re
+# chuoi = "The swordfish is a keyworde for this sword."
+# ket_qua = re.findall(r'\Bword\B', chuoi)
+# print(ket_qua)
+
+# chuoi = "Phạm vi từ 10-20 và 30-40."
+# ket_qua = re.findall(r'(\d+)-(\d+)', chuoi)
+# print(ket_qua)
+
+
+# chuoi = "Giá là 100 USD, 200 EUR, và 300 JPY."
+# # ket_qua = re.findall(r'\d+(?= USD)', chuoi)
+# # print(ket_qua)
+#
+# ket_qua = re.findall(r'\b\d+\b(?! USD)', chuoi)
+# print(ket_qua)
+
+
+# chuoi = "Giá là USD 100 và EUR 200."
+# ket_qua = re.findall(r'(?<=USD )\d+', chuoi)
+# print(ket_qua)
+#
+#
+# ket_qua = re.findall(r'(?<!USD )\d+', chuoi)
+# print(ket_qua)
+
+
+# import sys
+#
+# # Hàm kiểm tra hệ thống có phải là Little Endian hay không
+# def is_little_endian():
+#     return sys.byteorder == 'little'
+#
+# # Hàm chuyển đổi Little Endian sang Big Endian và ngược lại
+# def swap_endian(num):
+#     return ((num >> 24) & 0x000000FF) | \
+#            ((num >> 8)  & 0x0000FF00) | \
+#            ((num << 8)  & 0x00FF0000) | \
+#            ((num << 24) & 0xFF000000)
+#
+# # Kiểm tra hệ thống
+# if is_little_endian():
+#     print("System is Little Endian")
+# else:
+#     print("System is Big Endian")
+#
+# # Thử chuyển đổi Endian
+# x = 0x12345678
+# print(f"Original: 0x{x:08X}")
+# swapped = swap_endian(x)
+# print(f"Swapped: 0x{swapped:08X}")
 
 
 
