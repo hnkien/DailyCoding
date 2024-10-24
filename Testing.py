@@ -1,53 +1,53 @@
-from collections import deque
 
 
-def min_steps_bfs(N):
-    # BFS initialization
-    queue = deque([(N, 0)])  # (current_number, steps_count)
-    parent = {N: None}  # To track the parent number for each number
-    visited = set([N])  # To avoid revisiting numbers
-
-    # BFS loop
-    while queue:
-        current, steps = queue.popleft()
-
-        # If we've reached 1, reconstruct the path and return the result
-        if current == 1:
-            path = []
-            while current is not None:
-                path.append(current)
-                current = parent[current]
-            path.reverse()  # Reverse to get the path from N to 1
-            return steps, path
-
-        # Option 1: Decrement the current number
-        if current - 1 not in visited:
-            visited.add(current - 1)
-            queue.append((current - 1, steps + 1))
-            parent[current - 1] = current  # Keep track of how we reached this state
-
-        # Option 2: Replace current with the largest divisor (larger between a and b where a * b = current)
-        for i in range(2, int(current ** 0.5) + 1):
-            if current % i == 0:
-                # Replace with divisor i
-                # if i not in visited:
-                #     visited.add(i)
-                #     queue.append((i, steps + 1))
-                #     parent[i] = current
-
-                # Replace with current // i (other divisor)
-                other_divisor = current // i
-                if other_divisor not in visited:
-                    visited.add(other_divisor)
-                    queue.append((other_divisor, steps + 1))
-                    parent[other_divisor] = current
-
-
-# Example usage
-N = 101
-steps_needed, path = min_steps_bfs(N)
-print(f"Minimum steps to reduce {N} to 1: {steps_needed}")
-print(f"Path: {path}")
+# from collections import deque
+# def min_steps_bfs(N):
+#     # BFS initialization
+#     queue = deque([(N, 0)])  # (current_number, steps_count)
+#     parent = {N: None}  # To track the parent number for each number
+#     visited = set([N])  # To avoid revisiting numbers
+#
+#     # BFS loop
+#     while queue:
+#         current, steps = queue.popleft()
+#
+#         # If we've reached 1, reconstruct the path and return the result
+#         if current == 1:
+#             path = []
+#             while current is not None:
+#                 path.append(current)
+#                 current = parent[current]
+#             path.reverse()  # Reverse to get the path from N to 1
+#             return steps, path
+#
+#         # Option 1: Decrement the current number
+#         if current - 1 not in visited:
+#             visited.add(current - 1)
+#             queue.append((current - 1, steps + 1))
+#             parent[current - 1] = current  # Keep track of how we reached this state
+#
+#         # Option 2: Replace current with the largest divisor (larger between a and b where a * b = current)
+#         for i in range(2, int(current ** 0.5) + 1):
+#             if current % i == 0:
+#                 # Replace with divisor i
+#                 # if i not in visited:
+#                 #     visited.add(i)
+#                 #     queue.append((i, steps + 1))
+#                 #     parent[i] = current
+#
+#                 # Replace with current // i (other divisor)
+#                 other_divisor = current // i
+#                 if other_divisor not in visited:
+#                     visited.add(other_divisor)
+#                     queue.append((other_divisor, steps + 1))
+#                     parent[other_divisor] = current
+#
+#
+# # Example usage
+# N = 101
+# steps_needed, path = min_steps_bfs(N)
+# print(f"Minimum steps to reduce {N} to 1: {steps_needed}")
+# print(f"Path: {path}")
 
 
 # def min_steps_to_one_dp(N):
