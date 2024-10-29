@@ -964,7 +964,7 @@ def run_single(nStudent, file_account):
     else:
         while True:
             insert_Student(file_account)
-            sleep(0.01)
+            sleep(1)
 
 
 def run_thread(nThread, nStudent, file_account):
@@ -983,9 +983,9 @@ def run_thread(nThread, nStudent, file_account):
 
 if __name__ == '__main__':
     with open("account_TN.txt", 'a+') as file_account:
-        # run_single(10, file_account)
+        run_single(0, file_account)
         # run_thread(50, 10, file_account)
-        run_thread(20, 0, file_account)
+        # run_thread(20, 0, file_account)
 
 
 

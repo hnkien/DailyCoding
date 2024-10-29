@@ -1,25 +1,23 @@
 def isPalindrome(phrase):
-	n = len(phrase)
-	i = 0
-	j = n - 1
-	while (i < j):
-		if (not phrase[i].isalnum()):
-			i += 1
-		if phrase[i].isspace():
-			i += 1
-		if (not phrase[j].isalnum()):
-			j -= 1
-		if phrase[j].isspace():
-			j -= 1
-		if phrase[i].lower() == phrase[j].lower():
-			i += 1
-			j -= 1
-		else:
-			return False
-	return True
+    n = len(phrase)
+    i = 0
+    j = n - 1
+    while (i < j):
+        if (not phrase[i].isalnum()) or phrase[i].isspace():
+            i += 1
+        if (not phrase[j].isalnum()) or phrase[j].isspace():
+            j -= 1
+
+        if phrase[i].lower() == phrase[j].lower():
+            i += 1
+            j -= 1
+        else:
+            return False
+    return True
 
 phrase = 'Yo! Banana boy.'
-print(isPalindrome(phrase))
+print( isPalindrome(phrase))
+
 
 # def generate(numRows):
 # 	result = []
@@ -153,6 +151,7 @@ print(isPalindrome(phrase))
 # print("Path:", path)
 
 
+
 # from collections import deque
 #
 # def min_steps_to_one(N):
@@ -183,6 +182,7 @@ print(isPalindrome(phrase))
 # # Example usage:
 # N = 100
 # print(min_steps_to_one(N))  # Output: 4 (10 -> 5 -> 4 -> 2 -> 1)
+
 
 
 # def min_steps_to_one_dp(N):
@@ -298,6 +298,7 @@ print(isPalindrome(phrase))
 # print(f"Swapped: 0x{swapped:08X}")
 
 
+
 # a = [1, 2, 3, 4, 5]
 # b = a.pop()
 # print(b)
@@ -332,13 +333,13 @@ print(isPalindrome(phrase))
 #     def __init__(self, st, et):
 #         self.start = st
 #         self.end = et
-#
+# 
 #     def __str__(self):
 #         return "{} -> {}".format(self.start, self.end)
-#
+# 
 #     def __lt__(self, other):
 #         return self.start <= other.start
-#
+# 
 # rt1 = RoomTime(0, 30)
 # rt2 = RoomTime(5, 10)
 # rt3 = RoomTime(15, 20)
@@ -362,6 +363,8 @@ print(isPalindrome(phrase))
 # # re convert to dictionary
 # my_dict = dict(my_list)
 # print("Resultant dictionary :", my_dict)
+
+
 
 
 # f = open("Testing2.py", "r", encoding="utf-8")
@@ -458,9 +461,11 @@ print(isPalindrome(phrase))
 # print("\n".join(top_3))
 
 
+
 # lists = [[10, 15, 30], [12, 15, 20], [17, 20, 32]]
 # heap = [(lst[0], i, 0) for i, lst in enumerate(lists) if lst]
 # print(heap)
+
 
 
 # import heapq
@@ -610,6 +615,7 @@ print(isPalindrome(phrase))
 # print (transpose)
 
 
+
 # import queue
 # a = queue.Queue()
 # a.put(1)
@@ -757,12 +763,14 @@ print(isPalindrome(phrase))
 # print("Phần tử thứ", k, "nhỏ nhất là:", result)
 
 
+
 # import csv_to_sqlite
 #
 # # all the usual options are supported
 # options = csv_to_sqlite.CsvOptions(typing_style="full", encoding="windows-1250")
 # input_files = ["/Users/hypercloud/Downloads/Testing/TuDien/dictionary.csv"] # pass in a list of CSV files
 # csv_to_sqlite.write_csv(input_files, "/Users/hypercloud/Downloads/Testing/TuDien/english_dict.sqlite", options)
+
 
 
 # import sqlite3
@@ -786,6 +794,7 @@ print(isPalindrome(phrase))
 #     print(i)
 # conn.commit()
 # conn.close()
+
 
 
 # import sqlite3
@@ -836,3 +845,6 @@ print(isPalindrome(phrase))
 # print(count)
 # conn.commit()
 # conn.close()
+
+
+
