@@ -1,25 +1,145 @@
-def isPalindrome(phrase):
-	n = len(phrase)
-	i = 0
-	j = n - 1
-	while (i < j):
-		if (not phrase[i].isalnum()):
-			i += 1
-		if phrase[i].isspace():
-			i += 1
-		if (not phrase[j].isalnum()):
-			j -= 1
-		if phrase[j].isspace():
-			j -= 1
-		if phrase[i].lower() == phrase[j].lower():
-			i += 1
-			j -= 1
-		else:
-			return False
-	return True
+def intToRoman(number):
+    num = [1, 4, 5, 9, 10, 40, 50, 90,
+           100, 400, 500, 900, 1000]
+    sym = ["I", "IV", "V", "IX", "X", "XL",
+           "L", "XC", "C", "CD", "D", "CM", "M"]
+    i = 12
+    result = ""
 
-phrase = 'Yo! Banana boy.'
-print(isPalindrome(phrase))
+    while number:
+        div = number // num[i]
+        number %= num[i]
+
+        while div:
+            result += sym[i]
+            div -= 1
+        i -= 1
+
+    return result
+
+print(intToRoman(30))
+
+# def maxMatrixSum(matrix):
+#     totalRows = len(matrix)
+#     cols = len(matrix[0])
+#
+#     def helper(row, visitedColumns):
+#         if row == totalRows:
+#             return 0  # Base case: no more rows to process
+#
+#         maxSum = float('-inf')  # Initialize maxSum to the smallest possible value
+#
+#         for col in range(cols):
+#             if col not in visitedColumns:  # Avoid using the same column
+#
+#                 visitedColumns.append(col)
+#
+#                 currentSum = matrix[row][col] + helper(row + 1, visitedColumns)
+#                 if currentSum > maxSum:
+#                     maxSum = currentSum  # Update maxSum with the highest value
+#
+#                 visitedColumns.remove(col)
+#
+#         return maxSum
+#
+#     return helper(0, [])
+
+# def maxMatrixSum(matrix):
+#     totalRows = len(matrix)
+#     cols = len(matrix[0])
+#
+#     def helper(row, visitedColumns):
+#         if row == totalRows:
+#             return 0  # Base case: no more rows to process
+#
+#         maxSum = float('-inf')  # Initialize maxSum to the smallest possible value
+#
+#         for col in range(cols):
+#             if col not in visitedColumns:  # Avoid using the same column
+#                 newVisitedColumns = visitedColumns.copy()
+#                 newVisitedColumns.append(col)
+#
+#                 currentSum = matrix[row][col] + helper(row + 1, newVisitedColumns)
+#                 if currentSum > maxSum:
+#                     maxSum = currentSum  # Update maxSum with the highest value
+#
+#         return maxSum
+#
+#     return helper(0, [])
+
+
+# def maxMatrixSum(matrix):
+#     n = len(matrix)
+#     full_mask = (1 << n) - 1  # All bits set for n items
+#     dp = [-1] * (1 << n)  # DP array to store the max sums for each subset mask
+#
+#     def dfs(row, mask):
+#         if mask == full_mask:  # Base case: all rows are used
+#             return 0
+#         if dp[mask] != -1:  # If already computed
+#             return dp[mask]
+#
+#         max_sum = 0
+#         for col in range(n):
+#             if not (mask & (1 << col)):  # If col is not used in the current mask
+#                 # Try picking matrix[row][col] and add its value to the solution
+#                 new_sum = matrix[row][col] + dfs(row + 1, mask | (1 << col))
+#                 max_sum = max(max_sum, new_sum)
+#
+#         dp[mask] = max_sum  # Memoize the result
+#         return dp[mask]
+#
+#     return dfs(0, 0)
+
+
+# def maxMatrixSum(matrix):
+#     n = len(matrix)
+#     memo = {}
+#
+#     def dfs(row, visited):
+#         if row == n:  # All rows have been processed
+#             return 0
+#         if (row, tuple(visited)) in memo:
+#             return memo[(row, tuple(visited))]
+#
+#         max_sum = 0
+#         for col in range(n):
+#             if not visited[col]:  # Check if the column is unvisited
+#                 visited[col] = True  # Mark the column as visited
+#                 current_sum = matrix[row][col] + dfs(row + 1, visited)  # Recur for the next row
+#                 max_sum = max(max_sum, current_sum)  # Take the maximum sum
+#                 visited[col] = False  # Backtrack by unmarking the column
+#
+#         memo[(row, tuple(visited))] = max_sum
+#         return max_sum
+#
+#     return dfs(0, [False] * n)
+
+
+# print(maxMatrixSum([[-5,2,3,4],[6,7,8,9],[10,-1,12,13],[14,15,-4,16]]))
+
+# def isPalindrome(phrase):
+# 	n = len(phrase)
+# 	j = n - 1
+# 	i = 0
+# 	while (i < j):
+# 		if (not phrase[i].isalnum()):
+# 			i += 1
+# 		if phrase[i].isspace():
+# 			i += 1
+# 		if (not phrase[j].isalnum()):
+# 			j -= 1
+# 		if phrase[j].isspace():
+# 			j -= 1
+# 		if phrase[i].lower() == phrase[j].lower():
+# 			i += 1
+# 			j -= 1
+# 		else:
+# 			return False
+# 	return True
+#
+# phrase = 'Yo! Banana boy.'
+# print(isPalindrome(phrase))
 
 # def generate(numRows):
 # 	result = []
