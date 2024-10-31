@@ -1,23 +1,112 @@
-def intToRoman(number):
-    num = [1, 4, 5, 9, 10, 40, 50, 90,
-           100, 400, 500, 900, 1000]
-    sym = ["I", "IV", "V", "IX", "X", "XL",
-           "L", "XC", "C", "CD", "D", "CM", "M"]
-    i = 12
-    result = ""
+def max_subarray_sum(input):
+    n = len(input)
+    max_number = 0
+    max_ending_here = input[0]
+    for i in range(1, n):
+        max_ending_here = max(max_ending_here + input[i], input[i])
+        if max_ending_here > max_number:
+            max_number = max_ending_here
+    return max_number
 
-    while number:
-        div = number // num[i]
-        number %= num[i]
+input = [-1, -3, 5, -4, 3, -6, 9, 2]
+print(max_subarray_sum(input))
 
-        while div:
-            result += sym[i]
-            div -= 1
-        i -= 1
 
-    return result
 
-print(intToRoman(30))
+
+# import math
+#
+# def mean(x):
+#     return sum(x) / len(x)
+#
+# def sd(x):
+#     m = mean(x)
+#     ss = sum((i - m) ** 2 for i in x)
+#     return math.sqrt(ss / len(x))
+#
+# def corr(x, y):
+#     n = len(x)
+#     mean_x = mean(x)
+#     mean_y = mean(y)
+#
+#     cov_xy = (sum((x[i] - mean_x) * (y[i] - mean_y) for i in range(n)))*1.0/n
+#     sd_x = sd(x)
+#     sd_y = sd(y)
+#
+#     corr_xy = cov_xy/(sd_x * sd_y)
+#     return corr_xy
+
+# X = [1, 3, 5, 7]
+# Y = [2, 4, 6, 8]
+# print(corr(X, Y))
+
+# def pearson_correlation(x, x):
+#     if len(x) != len(y):
+#         raise ValueError("Lists X and Y must have the same length")
+#
+#     n = len(x)
+#     mean_x = sum(x) / n
+#     mean_y = sum(y) / n
+#
+#     numerator = sum((x[i] - mean_x) * (y[i] - mean_y) for i in range(n))
+#     denominator_x = sum((x[i] - mean_x) ** 2 for i in range(n))
+#     denominator_y = sum((y[i] - mean_y) ** 2 for i in range(n))
+#     denominator = (denominator_x * denominator_y) ** 0.5
+#
+#     if denominator == 0:
+#         return 0  # Tránh lỗi chia cho 0 khi các phần tử không có sự biến đổi
+#
+#     return numerator / denominator
+#
+#
+# # Ví dụ sử dụng
+# X = [1, 2, 3, 4, 5]
+# Y = [5, 4, 3, 2, 1]
+# print(pearson_correlation(X, Y))
+
+
+# import math
+# def smallest_multiple(n):
+#     ans = 1
+#     for i in range(1, n + 1):
+#         ans = int((ans * i) / math.gcd(ans, i))
+#     return ans
+
+
+# def max_three(input):
+#     input.sort()
+#
+#     max_product = input[-1] * input[-2] * input[-3]
+#     if max_product > 0:
+#         return max_product
+#     else:
+#         if input[-1] <= 0:
+#             return input[0] * input[1] * input[2]
+#         else:
+#             return input[-1] * input[0] * input[1]
+
+
+
+# def intToRoman(number):
+#     num = [1, 4, 5, 9, 10, 40, 50, 90,
+#            100, 400, 500, 900, 1000]
+#     sym = ["I", "IV", "V", "IX", "X", "XL",
+#            "L", "XC", "C", "CD", "D", "CM", "M"]
+#     i = 12
+#     result = ""
+#
+#     while number:
+#         div = number // num[i]
+#         number %= num[i]
+#
+#         while div:
+#             result += sym[i]
+#             div -= 1
+#         i -= 1
+#
+#     return result
+#
+# print(intToRoman(30))
 
 # def maxMatrixSum(matrix):
 #     totalRows = len(matrix)
